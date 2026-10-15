@@ -1,0 +1,17 @@
+.material-inspector { width:min(1120px,calc(100vw - 32px)); max-height:calc(100dvh - 40px); padding:24px; border:1px solid var(--line); border-radius:18px; background:var(--card); color:var(--ink); overflow:auto; box-shadow:var(--shadow); }
+.material-inspector::backdrop { background:rgba(20,30,25,.48); }
+html:has(#materialInspector[open]) { overflow:hidden; }
+#materialIdentity { font-size:12px; color:var(--muted); overflow-wrap:anywhere; }#materialIdentity summary { cursor:pointer; }
+.material-inspector header { display:flex; justify-content:space-between; gap:20px; align-items:flex-start; }
+.material-inspector h2 { font-size:22px; margin:0; }.material-inspector h3 { font-size:15px; }
+.material-inspector header p,.material-boundary,#materialCounts,#materialAccounting,#materialBatches { font-size:13px; line-height:1.7; color:var(--muted); overflow-wrap:anywhere; }
+.material-inspector button { padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:white; color:var(--green); cursor:pointer; }
+#materialControls { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; }
+#materialControls label { display:grid; gap:6px; font-size:12px; flex:1 1 200px; min-width:0; }
+#materialControls select { width:100%; min-width:0; padding:9px; border:1px solid var(--line); border-radius:8px; background:white; }
+.material-body { display:grid; grid-template-columns:minmax(0,2fr) minmax(240px,1fr); gap:24px; }.material-body[hidden],#materialControls[hidden] { display:none; }
+.material-body section,.material-body aside { min-width:0; }
+.material-inspector pre { white-space:pre-wrap; overflow-wrap:anywhere; tab-size:4; font:14px/1.75 Consolas,"Microsoft YaHei",monospace; padding:16px; border:1px solid var(--line); border-radius:10px; background:var(--paper); }
+#materialText { max-height:52dvh; overflow:auto; margin:0; }
+#materialChanges { max-height:35dvh; overflow:auto; font-size:13px; line-height:1.7; }#materialChanges summary { cursor:pointer; padding:8px 0; overflow-wrap:anywhere; }
+@media(max-width:700px){.material-inspector{padding:18px;width:calc(100vw - 20px);max-height:calc(100dvh - 20px);}.material-body{grid-template-columns:minmax(0,1fr);gap:12px;}#materialText{max-height:38dvh;}.material-inspector h2{font-size:19px;}}

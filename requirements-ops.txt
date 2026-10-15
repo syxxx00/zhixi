@@ -1,0 +1,2 @@
+# Incremental dependency for the OPS experiment reader, not the full model environment.
+ijson==3.5.1

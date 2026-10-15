@@ -1,0 +1,579 @@
+{
+  "project": "枝析",
+  "date": "2026-10-15",
+  "source_commit": "a18870dbbc7d1ac3cd141038f49669fd9fbfd8ab",
+  "format": "directory",
+  "kind": "Windows Python source runtime; no bundled interpreter or inference runtime",
+  "desktop_entrypoints": "packaging/templates; runtime Python and static assets copied unchanged",
+  "excluded": [
+    "history/database",
+    "model weights",
+    "credentials",
+    "caches/logs",
+    "Git history",
+    "historical diagnostics",
+    "development tools/tests"
+  ],
+  "files": {
+    ".gitignore": {
+      "bytes": 393,
+      "sha256": "f2e840dbf6458005673d2a7f04321af095cf57541374bd5170b8a0a8c45b9d9a"
+    },
+    "README.md": {
+      "bytes": 10181,
+      "sha256": "71c940591a24503cbf29e55c335632694239b1f98f12ba35c24313951a2da794"
+    },
+    "THIRD_PARTY.md": {
+      "bytes": 2350,
+      "sha256": "c6991061b2acb6fdab6bda4381c5a984ab1d9d929212c417584d8d442430151e"
+    },
+    "launch.py": {
+      "bytes": 5519,
+      "sha256": "0901b714c1334d1eeea44547117466c5d24aecbbbfe2a841fab7b6c645cbf7cf"
+    },
+    "local-config.example.bat": {
+      "bytes": 357,
+      "sha256": "7560829383fcec55a85d5f8ea27c1ed65dc99c3491013a156cfafed9196225fe"
+    },
+    "platform_adapters.json": {
+      "bytes": 37,
+      "sha256": "736ab29519c8bf3841518ae51f42574a76d7f61e297ae1da3ca189c912917261"
+    },
+    "portable_env.bat": {
+      "bytes": 641,
+      "sha256": "66d18017785bc7b57c9965d88b1d373a60cc3c9ae9af8fc2dd3d56053197d304"
+    },
+    "requirements-ops.txt": {
+      "bytes": 101,
+      "sha256": "7cd44726bdb120cade8df2e8a427c98fb5b84d8374cee3c6ab32b2883698d8e4"
+    },
+    "requirements.txt": {
+      "bytes": 172,
+      "sha256": "95a5a9ff698af499dba554039056b85ef565e32ce63b01e4ee606014d2c14924"
+    },
+    "setup.bat": {
+      "bytes": 580,
+      "sha256": "b009169504b92efd4a0df082d608aedef300890e593a9cb5aa32f98e3f97c91c"
+    },
+    "start.bat": {
+      "bytes": 393,
+      "sha256": "0b3280ada43a15db400f31fb8427b7b869d620297035383d374bbd8b86eaeaab"
+    },
+    "static/api.js": {
+      "bytes": 2748,
+      "sha256": "9a561defb2360e58812ab8efd58cc967375f0e166f63a146cca9a5360f1a677d"
+    },
+    "static/app.js": {
+      "bytes": 145964,
+      "sha256": "6c48fbdce40e87fef0534c695fb1ad078ab75c1d362ed15b67910d3222d2a1b1"
+    },
+    "static/basic_outline.css": {
+      "bytes": 767,
+      "sha256": "d93df87d24fcd5a385bdb00c9823dc55d192836d6fffc9ed5cfe0e1c92736633"
+    },
+    "static/basic_outline.js": {
+      "bytes": 4907,
+      "sha256": "bbaf829db1b854454d9d402d94267306958d76395293ca61202224c5ad11f913"
+    },
+    "static/file_input.js": {
+      "bytes": 1288,
+      "sha256": "020814d268d1f2f79bc52c6b56f99eca47baada144b90a0ead06e99ce6709323"
+    },
+    "static/index.html": {
+      "bytes": 23890,
+      "sha256": "e3d921e63d1516e896f251ac912f15ba32dfd2197c4a98ce4bd69774c5b311bf"
+    },
+    "static/materials.css": {
+      "bytes": 2274,
+      "sha256": "b2b1c3a05f411a7869e61e856be7faf4292ce0239b9546e95527ac7c261dd670"
+    },
+    "static/materials.js": {
+      "bytes": 9252,
+      "sha256": "8a1f5d4fcc1e13db18625b445bdb47b53e53492bb1a3dec21db2d94558c31815"
+    },
+    "static/media_evidence.css": {
+      "bytes": 3304,
+      "sha256": "01e349dba2d2a6473cafab2bab02898118dd583d6aae0b66e273ed3683f2ac74"
+    },
+    "static/media_evidence.js": {
+      "bytes": 22837,
+      "sha256": "521224421a136aa2aa660fa13438d0f1d9d5401ec159e93e259e4e42960e0fdf"
+    },
+    "static/model_defaults.js": {
+      "bytes": 1531,
+      "sha256": "57fcb54bad8668d072b6753d045f203729feb4c928df3b9e544df846651ec9e3"
+    },
+    "static/ops.css": {
+      "bytes": 6531,
+      "sha256": "55cf7739dc8792284a5e13a83eefc5c0dc1ad1250e41609b3c129e8305197419"
+    },
+    "static/ops.html": {
+      "bytes": 6292,
+      "sha256": "bc87e83dd730a5e0c6b1de834f15f096b5d5824d97af3fc0b1ba8877bd15d40f"
+    },
+    "static/ops.js": {
+      "bytes": 25040,
+      "sha256": "9c0d55ddf8265e1be4d9aab9cc325872a476de756f35f792e49b17428cb7469a"
+    },
+    "static/questions.js": {
+      "bytes": 24543,
+      "sha256": "36bdc564ee640f14265840263b95f6a5253a8b22a75b0a66d1ca92c620fa5037"
+    },
+    "static/report.css": {
+      "bytes": 11383,
+      "sha256": "a21b91fe0fb2b3b787285d9645c78a5c20bdf883fa12e1e15280c5cbbc875cc6"
+    },
+    "static/report.js": {
+      "bytes": 49014,
+      "sha256": "25a868ab98b4d9756b7a235e592fbdeda308da8ed8a5f13e8496396ca4a0ba58"
+    },
+    "static/search_settings.js": {
+      "bytes": 5648,
+      "sha256": "635731a5078a5ed0079fd23fc662ee1e922620482f321e49d515f73b27276bdf"
+    },
+    "static/styles.css": {
+      "bytes": 49514,
+      "sha256": "46a5348642bd8a74834290a3199ae14b74788e12ce936c7d2fc6ec4bdd862a30"
+    },
+    "stop.bat": {
+      "bytes": 314,
+      "sha256": "b7a759da1b71df48b3bab750fc00ad1d4f90d3248d2a7bd765cf8630644f5e0f"
+    },
+    "stop.ps1": {
+      "bytes": 6133,
+      "sha256": "22abaf49527deea6c7d7be55aca450ae8b913dafe5d52681f27033b5e439eb9e"
+    },
+    "zhixi/__init__.py": {
+      "bytes": 81,
+      "sha256": "bd344892307f431f79a038ddecc1b76a9ec84c107bbe27a06825eb8ccd2dc635"
+    },
+    "zhixi/content/__init__.py": {
+      "bytes": 77,
+      "sha256": "668f8989f10dc4cb4f4dffba511289cabccb89c8ad390a1fbfa6e092f58d2a93"
+    },
+    "zhixi/content/content_pipeline.py": {
+      "bytes": 20349,
+      "sha256": "5daed026d65d5f61a4a30573faf31430697200872321421a025a72e26976757c"
+    },
+    "zhixi/content/evidence_context.py": {
+      "bytes": 5637,
+      "sha256": "bb7a01307726c5fdadf4e358f5e7db7ff908c30cd0f6ac50ccbfd2a9ad5ee573"
+    },
+    "zhixi/content/evidence_segmentation.py": {
+      "bytes": 2471,
+      "sha256": "f0b7da3f32aec8faf99aba73df306c421842ccd61ef26d49ed5ab7dd98f0c332"
+    },
+    "zhixi/content/evidence_transport.py": {
+      "bytes": 14591,
+      "sha256": "550e98ca93de558c775adf82eae6963660c29b2b73d16507d7173f040a259782"
+    },
+    "zhixi/content/source_identity.py": {
+      "bytes": 7499,
+      "sha256": "a18402dfe2e03da2f434b1e4d0391cedaf733d794033d4a95ce59485dbe73aaa"
+    },
+    "zhixi/content/source_material.py": {
+      "bytes": 3809,
+      "sha256": "e9b75da01cf537354ed893976e333ea97c3abefaf4a49939a5e54bf3ddd09462"
+    },
+    "zhixi/content/source_reading.py": {
+      "bytes": 4584,
+      "sha256": "571d2a8f52ec761f8a6bed2a0ddc7d9537b895078abcabff4fe7ae8096e023f6"
+    },
+    "zhixi/content/text_cleaning.py": {
+      "bytes": 12795,
+      "sha256": "5d28d5c1e41bf19db3a0550d5c3888698b50b4f8d599a28d195b93b2486b4b1b"
+    },
+    "zhixi/content/text_transforms.py": {
+      "bytes": 3337,
+      "sha256": "3d5a8b309efd9b57cc02edc475d01064b3029790c7c56d75fc3b9dd58d4b80cb"
+    },
+    "zhixi/core/__init__.py": {
+      "bytes": 75,
+      "sha256": "d032e2fe07724ae3e2fa2af101e3a38f7e3a962d14fc558e068dc0b83733b5f2"
+    },
+    "zhixi/core/experiment_control.py": {
+      "bytes": 4446,
+      "sha256": "86854169d755b7d28971d4d10d51746e6f9f043beb0edcb39abb395099e97351"
+    },
+    "zhixi/core/json_repairing.py": {
+      "bytes": 3446,
+      "sha256": "5f35c1ad49f41390d49cdc10b075248c4c588ec718bce38dcfbe9e7fa20c1181"
+    },
+    "zhixi/core/runtime_config.py": {
+      "bytes": 1607,
+      "sha256": "24b753c66867f8e270b9d355852a847f68f7fc52edac6a221d9868830fd1f6ad"
+    },
+    "zhixi/media/__init__.py": {
+      "bytes": 58,
+      "sha256": "758679a980f870be8d868acf7c571a5e064e9fd43493a287f4454892cbf22ace"
+    },
+    "zhixi/media/media_evidence.py": {
+      "bytes": 23636,
+      "sha256": "fae7f962116e0b27fd1495fff1d74b105d6c807a3d30ffdb2bf7392698285b7b"
+    },
+    "zhixi/media/research_media.py": {
+      "bytes": 7789,
+      "sha256": "b99ff319b776749c20fd117428f74bb6276016de5f10702cf65b2dbf718b7a6c"
+    },
+    "zhixi/models/__init__.py": {
+      "bytes": 88,
+      "sha256": "7808900145f1cc0ea3c4dc60262e5bcfdbdc09feeb309b62b8ff2e8e51bd0f47"
+    },
+    "zhixi/models/generation_telemetry.py": {
+      "bytes": 3006,
+      "sha256": "93a7bfc4d2d76e0edd4b53b7497935a8ff48fae4c13e3af2f4e5c768f2847949"
+    },
+    "zhixi/models/llama_completion.py": {
+      "bytes": 2037,
+      "sha256": "8c5a633d26ce4dc94d33198618b1b43e45c5cda17d647bae423b7e5c3b2a74e2"
+    },
+    "zhixi/models/local_model_server.py": {
+      "bytes": 9264,
+      "sha256": "69e2d4ec666b8db3e2417c5156cbe9438cab8222ff173837032472d2b0637987"
+    },
+    "zhixi/models/model_input_budget.py": {
+      "bytes": 2621,
+      "sha256": "2c64194f93cb89f883f4c3b9393240f06ca5845dcc0a1f93599c7d85a0ece076"
+    },
+    "zhixi/models/model_resources.py": {
+      "bytes": 5001,
+      "sha256": "67e6e2705b299852da76a3137862113d00cdb9a0fb4d0b29da424aaeb07aaa16"
+    },
+    "zhixi/models/model_result_contract.py": {
+      "bytes": 6977,
+      "sha256": "a877ca0745b625be919d32bd7efb40978d7d8a9e2f13c839cc5b9f8eec64aad3"
+    },
+    "zhixi/models/model_text_planning.py": {
+      "bytes": 4927,
+      "sha256": "b4e81a8fa3cef729df0a6c9a23d1999e3f4d11df1ff0be4fea20c32cad3f8ba8"
+    },
+    "zhixi/models/qwen_analyze.py": {
+      "bytes": 46586,
+      "sha256": "20e00916398ee848582ca189b505be3848ff211d1ffff5db6ec71d6a12767617"
+    },
+    "zhixi/ops/__init__.py": {
+      "bytes": 85,
+      "sha256": "c460b2d9d837fbf7652714b73eb4a5f6ef749e58650b90d58d073aa085158a76"
+    },
+    "zhixi/ops/ops_catalog.py": {
+      "bytes": 15137,
+      "sha256": "58c2a428539adb8ae743f7913cd2db2e04983c3094ab0efe054e4caed531a280"
+    },
+    "zhixi/ops/ops_device.py": {
+      "bytes": 3810,
+      "sha256": "73f0222e85e12bca7be768933fdf3abbe3ab56de926585026ec876ae21ecd441"
+    },
+    "zhixi/ops/ops_experiments.py": {
+      "bytes": 13573,
+      "sha256": "e790bc4c2dbd5e1ddf5bc45ba37268277d3ded6007b7ee1f0eeb325a2be76e94"
+    },
+    "zhixi/ops/ops_snapshot.py": {
+      "bytes": 3481,
+      "sha256": "efa8baa550ff5cff129779856e54f5a8cef36212eb1e6fac63eea23318934b31"
+    },
+    "zhixi/ops/research_runtime_receipts.py": {
+      "bytes": 1702,
+      "sha256": "ede1bdda3d9d16be5012dbc7d7d5d89edf2ef0480a316aa218b3288d6769542b"
+    },
+    "zhixi/ops/research_runtime_view.py": {
+      "bytes": 11352,
+      "sha256": "815ea456644af4d8dd7c1404ea608121aee4db4816a787b22fc1993cb9aaf9d4"
+    },
+    "zhixi/paths.py": {
+      "bytes": 202,
+      "sha256": "02aa4ee89a1d4c21631440c5a74b932ac6dd2ca8cfa3453fc1ec70d810cb506c"
+    },
+    "zhixi/reports/__init__.py": {
+      "bytes": 75,
+      "sha256": "9f1a5a7aba66f85bb2041b094ba6a1212fc97b6695ab9bb9895aed4f6e9ea469"
+    },
+    "zhixi/reports/audit_decisions.py": {
+      "bytes": 6712,
+      "sha256": "2fca767d61131059cefca05b0b1629dcfc63eefef88ccf2e8a71d52b43842851"
+    },
+    "zhixi/reports/grounding_batches.py": {
+      "bytes": 11220,
+      "sha256": "de0aa1018b49f36bc60c4f2062d7d9879cf30c40e6fbb514aff31b2d1cfbdb17"
+    },
+    "zhixi/reports/grounding_context.py": {
+      "bytes": 4843,
+      "sha256": "40f1f6f46b0f95437f65912c94f37c870d5da01d44a8549dd655d8db63ddeb5d"
+    },
+    "zhixi/reports/grounding_statements.py": {
+      "bytes": 8568,
+      "sha256": "46e668d327ca5ec12afadc8be89be8682f9ceb6492fc6c62b4e7230e6edbe0bf"
+    },
+    "zhixi/reports/question_coverage.py": {
+      "bytes": 18760,
+      "sha256": "22c6c9445d543ff8ea66445ad6bea9284f8689dc788d62832c66b468c505063b"
+    },
+    "zhixi/reports/report_composition.py": {
+      "bytes": 13703,
+      "sha256": "12dbb4f65020ab23c9c91d8fe60029930eda478e9cab22ee2f82962cef3815de"
+    },
+    "zhixi/reports/report_consistency.py": {
+      "bytes": 10087,
+      "sha256": "cdfe906b559d8d035b84580813cbab8fe1805703e6608ef13df345d92f2f721d"
+    },
+    "zhixi/reports/report_editing.py": {
+      "bytes": 3700,
+      "sha256": "9299495e949cde3f763afae07dd58344c6356aaf1e4da5ee3ede953dd1e8c3bd"
+    },
+    "zhixi/reports/report_feedback.py": {
+      "bytes": 19653,
+      "sha256": "4269a9db63cb27bbd1650727f9aac6a5e64dbb4dc2f908e35900fd0240c8af19"
+    },
+    "zhixi/reports/report_grounding.py": {
+      "bytes": 35444,
+      "sha256": "98243f7bd144af2ce46e35305317bd278b2109b27235946334697c67bf0cec8d"
+    },
+    "zhixi/reports/report_material_outline.py": {
+      "bytes": 7261,
+      "sha256": "7a779d08f282de01485c7409b05399eaf64c732b778f5f2928e70ef33f8e3762"
+    },
+    "zhixi/reports/report_material_scope.py": {
+      "bytes": 9245,
+      "sha256": "f538abc45d0c2bb85f6c0f5bf391ca4c8f26fdbe98fbd71ffddf8991b25dbd2b"
+    },
+    "zhixi/reports/report_organization.py": {
+      "bytes": 22635,
+      "sha256": "a868635ec3d2352e513792257dc08f3a9505fde04b2bf714b42d1950721f8e04"
+    },
+    "zhixi/reports/report_outline.py": {
+      "bytes": 28040,
+      "sha256": "ac306f8ae34332a1702af85aecfb85f8435d95776fa8c3981b0ffef09bc2f306"
+    },
+    "zhixi/reports/report_output_recovery.py": {
+      "bytes": 3207,
+      "sha256": "1dbcde44812e373a1d12378efe67cb09807adadb5266dd0d2286a68dc8c4527e"
+    },
+    "zhixi/reports/report_overall_check.py": {
+      "bytes": 32096,
+      "sha256": "37d10f2f7b899d61431f58eef7e5a0d29128cb78c92f448fddfd983eb8dc8977"
+    },
+    "zhixi/reports/report_publication.py": {
+      "bytes": 3569,
+      "sha256": "923a11ec56bd0c4a4ee782eb2e06f1d07a27c8c9af6ee8a21fa7e441519b13ec"
+    },
+    "zhixi/reports/report_question_service.py": {
+      "bytes": 4661,
+      "sha256": "4c6c9f597e414501abc133da8bb9fd90ce03cf0522399bafa363956a447de0b9"
+    },
+    "zhixi/reports/report_questions.py": {
+      "bytes": 16348,
+      "sha256": "bac9c9aa9f561f2969d30d2132a58b1b971b921bd71241b2047ea22f75f95736"
+    },
+    "zhixi/reports/report_reading.py": {
+      "bytes": 6497,
+      "sha256": "332bf4167d07665bad873c4f14ba021c5e755225dfd49e216e721ad4b776a8b7"
+    },
+    "zhixi/reports/report_review_scope.py": {
+      "bytes": 6632,
+      "sha256": "e642fddafa12736d3c8722cce12a472c35b91975ee0af26b4bbf057c482a5140"
+    },
+    "zhixi/reports/report_shared_review.py": {
+      "bytes": 13200,
+      "sha256": "fea45581bd2b4486f244e466c745a623f7825f3933c53791ee38e0d7a1321d65"
+    },
+    "zhixi/reports/research_drafting.py": {
+      "bytes": 14582,
+      "sha256": "2b0d303301346f10282386ca9d21eff9b060478a7ae06850ec9dd13934d86f1f"
+    },
+    "zhixi/reports/research_report.py": {
+      "bytes": 17604,
+      "sha256": "8a37d0c7861ebe6eea17632cac10916ce131659ede4ace4cb9be87c17f1658e1"
+    },
+    "zhixi/reports/research_synthesis.py": {
+      "bytes": 11464,
+      "sha256": "3d6f7d2c73cf3cf95af8dffe3fe0a6c77eb963a5263096ca2af2655cb1b76b80"
+    },
+    "zhixi/reports/semantic_audit.py": {
+      "bytes": 8684,
+      "sha256": "1b9f639f06ab6749d8469782a9ea1fd2a7dca1db2353b857895bfda8b748489c"
+    },
+    "zhixi/research/__init__.py": {
+      "bytes": 79,
+      "sha256": "e518bb64715c39d47319da2c3c0443734ece6048dd5987cfbb5c36bb044619bd"
+    },
+    "zhixi/research/feedback_collection.py": {
+      "bytes": 8084,
+      "sha256": "eac2b6bdf39c1e82392515723c25b51943c3345af040c6a49205dd6c60cbc682"
+    },
+    "zhixi/research/goal_interpretation.py": {
+      "bytes": 18880,
+      "sha256": "bc2bc66ce4b15d024cb093c94b7cdba8fc8636c340b52a3a7e339c7cca499f5e"
+    },
+    "zhixi/research/research_acquisition.py": {
+      "bytes": 11575,
+      "sha256": "1d8a406dc17dded2b455fa92f6b2d70cb6dba6102c5c4cce7c8ea0aca26fa3d8"
+    },
+    "zhixi/research/research_actions.py": {
+      "bytes": 4201,
+      "sha256": "06c91374d82223f7414be1e0a41b10406f3fed5732404abd7432a89b6c7531ac"
+    },
+    "zhixi/research/research_analysis.py": {
+      "bytes": 51653,
+      "sha256": "470fc8d38edfa8ff64c3f800c2a081b89f045e64c21a00c45fa3c90eeb9a62ac"
+    },
+    "zhixi/research/research_capacity.py": {
+      "bytes": 7791,
+      "sha256": "7626aece75b6d986c40c47957a5172bc3e60047b0ea0057f5bab01bad211b303"
+    },
+    "zhixi/research/research_contracts.py": {
+      "bytes": 15132,
+      "sha256": "9d7dcf83a38a1671bc57ad3fc258f849fc6eb64e8d9a967c7ecc9047ed3cbcb1"
+    },
+    "zhixi/research/research_control.py": {
+      "bytes": 6108,
+      "sha256": "1383bc8a05d1e040c6d3189d5a439b64111534d867ee5716cb11d247cfc0fca3"
+    },
+    "zhixi/research/research_execution.py": {
+      "bytes": 4387,
+      "sha256": "318c1c415cb531ed9c6639f1c3eb6c85d2d9443a1751e6d0811d338b370c0388"
+    },
+    "zhixi/research/research_intent.py": {
+      "bytes": 44341,
+      "sha256": "26fc012de38279c80aa55f1b9576fbf88d944b7c2f9bfbdf203c01a18a7fd6e2"
+    },
+    "zhixi/research/research_learning.py": {
+      "bytes": 30727,
+      "sha256": "d2dd8217d06db56d3f0a16385cba3483f3d80f80cec6e6525079610ac17bf119"
+    },
+    "zhixi/research/research_materials.py": {
+      "bytes": 4899,
+      "sha256": "ba8b07bd6511a685b3a6669dfc1a987bca1e5fb9ed6033272f2370df83a83548"
+    },
+    "zhixi/research/research_model_calls.py": {
+      "bytes": 11495,
+      "sha256": "e1c83c81e5881c2f1e720828e5dd60e7b42a8d410e1f2ba0926b85dca1f8a311"
+    },
+    "zhixi/research/research_planning.py": {
+      "bytes": 6142,
+      "sha256": "169bb7eb4c81554ba5adf45b642b2bce517c63f48fa3f93024455ee552dfe809"
+    },
+    "zhixi/research/research_reading_state.py": {
+      "bytes": 34614,
+      "sha256": "035dab06d14f82699a909e93c0d8d99631181fb0ab4644ed62ebff0ac34d1ed5"
+    },
+    "zhixi/research/research_reasoning.py": {
+      "bytes": 9009,
+      "sha256": "c09545aba592084802c40d0c59edebe69b1e58742ba3ea72f6b42ef329dd642f"
+    },
+    "zhixi/research/research_reflection.py": {
+      "bytes": 39476,
+      "sha256": "d4a0fa2be87cfcc8cc6c0953dba9492796f825684dcc97586dfdd6dc1f2aa2ee"
+    },
+    "zhixi/research/research_rounds.py": {
+      "bytes": 17220,
+      "sha256": "d79920b75e4e2e2814055ebdc786f38f02beac19e244e786276c5437ee3692e6"
+    },
+    "zhixi/research/research_search_recovery.py": {
+      "bytes": 9956,
+      "sha256": "b5e68754b513aad3f836b8952cbbd4407c180dc573bd25c465b17062a43c1ed7"
+    },
+    "zhixi/research/research_workflow.py": {
+      "bytes": 28132,
+      "sha256": "bbc134587ca6dceab87b2e8688556e1192cee1469e509d95e02264189e65abcd"
+    },
+    "zhixi/sources/__init__.py": {
+      "bytes": 78,
+      "sha256": "9e20524f1cb88ed8431be61265bccf8a3a8e5c1c6d7a00e5dd212f607166722c"
+    },
+    "zhixi/sources/bilibili_subtitles.py": {
+      "bytes": 6512,
+      "sha256": "469d960a69ea7b184c712bd1f1ed750cbf67c2a4e3da170768d3c627477eb3a5"
+    },
+    "zhixi/sources/declarative_adapters.py": {
+      "bytes": 8504,
+      "sha256": "bc900cb74e8542618e62342ae39f58422411105fd50f1be04483d2c5c661c681"
+    },
+    "zhixi/sources/platform_adapters.py": {
+      "bytes": 19871,
+      "sha256": "0d2b2d4ca9a759cac865fc7e7b38c0739db6e06071a55c6f0be14184397d5a06"
+    },
+    "zhixi/sources/public_research_sources.py": {
+      "bytes": 13295,
+      "sha256": "cbed7839a27c42e898906de347e5b1518e0768108819043fec26598c74859059"
+    },
+    "zhixi/sources/search_api.py": {
+      "bytes": 17064,
+      "sha256": "daeb598eeb3e08a02dd91bd7ed11b23a4fd9a3ac8c6196c424800a08b4032579"
+    },
+    "zhixi/sources/search_settings.py": {
+      "bytes": 4252,
+      "sha256": "efcfa8c29f601394e80ef36f4b3179ed61f237c46a82651c9b303a2e1153d71d"
+    },
+    "zhixi/sources/search_sources.py": {
+      "bytes": 17857,
+      "sha256": "292c96a76cf12051b5b8f461bbae8fd89c35e0d7c0c836513e6a94de6d0312b7"
+    },
+    "zhixi/sources/sitemap_discovery.py": {
+      "bytes": 3986,
+      "sha256": "066f0a03eaca3ad380f7bb38c3a7b86724d009d3da2ea6dac7af90e5ad8d2997"
+    },
+    "zhixi/sources/source_queries.py": {
+      "bytes": 27422,
+      "sha256": "eb3f4f8e39c1c7566aa955271eefd1be5f766457fe11c643e7eb637a9cc3ad85"
+    },
+    "zhixi/sources/web_access.py": {
+      "bytes": 8577,
+      "sha256": "267bb7ecb2282158dafba42798766ea6c8831b5959ce9284cfd608aa0533bad7"
+    },
+    "zhixi/sources/webpage_reading.py": {
+      "bytes": 15448,
+      "sha256": "d5b2bd9d2d8cc62ea3f00e60dab657dd38d055244926d3f605d31b786fdbdb9f"
+    },
+    "zhixi/sources/webpage_reading_runtime.py": {
+      "bytes": 6008,
+      "sha256": "9adf3a6e7011dfef6a2391fabb2c64b54b283eea78bfe48b6fb9a3c7648df894"
+    },
+    "zhixi/storage/__init__.py": {
+      "bytes": 76,
+      "sha256": "0275b64e4d6bfe8c2412fed9bce0ed904fcb0866e0b959ecba2c8ada483a123f"
+    },
+    "zhixi/storage/database_schema.py": {
+      "bytes": 20617,
+      "sha256": "e973ac970d8d8e3f296d6c859327ea413a78eec42a44feeb44e38874ca471945"
+    },
+    "zhixi/storage/job_store.py": {
+      "bytes": 6459,
+      "sha256": "d4fd7d7cf6c6af3ed64d994619e72814e0860dbf58d08d22f8dccec1b59b1a26"
+    },
+    "zhixi/storage/review_scope_storage.py": {
+      "bytes": 1934,
+      "sha256": "46d518df48a89f7476fbe4d168ff5ac352ce4234ff20233dc3e5fc73510ab09a"
+    },
+    "zhixi/storage/synthesis_checkpoints.py": {
+      "bytes": 5276,
+      "sha256": "6c7c779b9643b5312e046c9250c711d2304c716ba6e6752cb110435d2fc9c5e8"
+    },
+    "zhixi/storage/task_trash.py": {
+      "bytes": 7196,
+      "sha256": "e61cec53c7023da3077d5b35cbea6b1501a86a0847f056fd8670b9033e0a6394"
+    },
+    "zhixi/web/__init__.py": {
+      "bytes": 63,
+      "sha256": "92db434f7dd6275ddcc06e772281e2b67a2d8379b267518c9e71470d0b0a9e99"
+    },
+    "zhixi/web/app.py": {
+      "bytes": 300071,
+      "sha256": "1289321cb17f782161931059f7ab87b210c9f19e4eb7555b1024b9696043a133"
+    },
+    "zhixi/web/coverage_review_api.py": {
+      "bytes": 9004,
+      "sha256": "646a3f6725987881f5f4c195c68300c551536e0daf8f826a8da77600b37b6a8b"
+    },
+    "zhixi/web/report_question_api.py": {
+      "bytes": 25894,
+      "sha256": "e1b38634d2ecdb1b46ca662481c7a7e91f279e99645317d299f78099bd24329e"
+    },
+    "zhixi/web/research_entrypoints.py": {
+      "bytes": 4495,
+      "sha256": "f8be2494ae142f5df022d3c6a8e62487f964c52b676ef9b8f752bc5d73b20e6b"
+    },
+    "zhixi/web/research_revision.py": {
+      "bytes": 6585,
+      "sha256": "732c77a872a3f6a822f48632e133d6cbf3d7e1d800dafe02da3169b97eb11cc8"
+    }
+  }
+}

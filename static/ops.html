@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>枝析 · 任务运行中心</title><link rel="stylesheet" href="/assets/ops.css?v=20260911-device"></head>
+<body>
+<header><div><a class="brand" href="/">枝析 / OPS</a><h1>任务运行中心</h1><p class="muted">查找任务、查看过程与成果。监控状态与任务状态分别展示。</p></div><span id="connection" class="pill">正在连接</span></header>
+<main>
+<section class="metrics" aria-label="运行总览">
+<button data-quick=""><span>全部记录</span><strong id="totalCount">—</strong></button>
+<button data-quick="active"><span>进行中记录</span><strong id="activeCount">—</strong></button>
+<article><span>驻留模型 / 默认模型</span><strong id="modelReady">—</strong></article>
+</section>
+<details id="devicePanel" class="panel device-panel">
+<summary>设备状态 <small>整机负载 · 展开查看</small></summary>
+<p class="muted">包含其他程序的占用，不代表本项目负载，也不能仅凭负载判断任务是否卡住。展开时每 15 秒更新。</p>
+<div id="deviceReadings" class="summary-grid"></div>
+<small id="deviceTime" role="status">尚未读取</small>
+</details>
+<section class="panel" aria-labelledby="directoryTitle">
+<div class="panel-head"><div><h2 id="directoryTitle">任务目录</h2><small id="snapshotTime">独立实验与正式任务保留各自归属；关联子任务单独列出。</small></div><button id="refreshList" type="button">刷新目录</button></div>
+<form id="filters" class="filters" role="search">
+<label class="search">搜索任务<input id="query" type="search" maxlength="500" placeholder="名称、研究目标、任务或项目 ID" autocomplete="off"></label>
+<label>类型<select id="kind"><option value="">全部类型</option><option value="research">正式研究</option><option value="job">模型任务</option><option value="report">研究报告</option><option value="analysis">已保存分析</option><option value="experiment">独立实验</option></select></label>
+<label>状态<select id="status"><option value="">全部状态</option><option value="active">进行中</option><option value="attention">异常记录</option><option value="paused">已暂停</option><option value="completed">已完成</option><option value="saved">已保存成果</option><option value="no_evidence">无有效材料</option><option value="failed">失败</option><option value="interrupted">运行失联</option><option value="cancelled">已取消</option><option value="unavailable">暂不可读</option></select></label>
+<label>更新时间<select id="period"><option value="">不限时间</option><option value="1">最近一天</option><option value="7">最近七天</option><option value="30">最近三十天</option></select></label>
+<label>排序<select id="sort"><option value="updated">最近更新</option><option value="oldest">最早更新</option><option value="title">名称排序</option></select></label>
+<button type="button" id="resetFilters">重置</button>
+</form>
+<p id="listNotice" class="notice" role="status" hidden></p><button id="applyUpdate" class="update" hidden>目录有变化，点击更新（保留筛选和页码）</button>
+<div class="table-wrap"><table><thead><tr><th scope="col">任务 / 目标</th><th scope="col">类型</th><th scope="col">任务状态</th><th scope="col">当前阶段</th><th scope="col">记录更新时间</th></tr></thead><tbody id="taskRows"></tbody></table></div>
+<div id="emptyList" class="empty" hidden>没有符合条件的任务。可以调整搜索词或筛选条件。</div>
+<nav class="pagination" aria-label="任务分页"><span id="listCount">正在读取…</span><label>每页<select id="pageSize"><option>10</option><option selected>20</option><option>50</option><option>100</option></select></label><button id="previousPage">上一页</button><span id="pageLabel">—</span><button id="nextPage">下一页</button><label>跳至<input id="jumpPage" type="number" min="1" value="1" aria-label="目标页码"></label><button id="goPage">前往</button></nav>
+</section>
+<p class="footnote">列表只读取任务摘要。材料、运行记录和报告在详情内按需读取，不随目录自动刷新。</p>
+</main>
+<dialog id="taskDetail" aria-labelledby="detailTitle">
+<div class="detail-head"><div><small id="detailKind"></small><h2 id="detailTitle">正在读取任务…</h2><code id="detailId"></code></div><button id="closeDetail" aria-label="返回任务目录">返回目录 ×</button></div>
+<div class="detail-scroll">
+<p id="detailNotice" class="notice" role="status" hidden></p>
+<section id="detailSummary"></section><div id="detailActions" class="actions"></div>
+<nav class="tabs" aria-label="详情内容"><button data-tab="overview" aria-selected="true">任务概况</button><button data-tab="pages">材料目录</button><button data-tab="events">运行记录</button><button data-tab="reports">报告</button></nav>
+<section id="overviewPanel"><dl id="detailFacts"></dl><p id="detailPath" class="muted path"></p><p class="muted">操作沿用原任务规则；打开正式结果后可继续使用编辑、划选提问和原文查看。</p></section>
+<section id="recordsPanel" hidden><form id="recordSearch"><label>查找当前记录<input id="recordQuery" type="search" placeholder="材料标题、网址或运行消息"></label><button>搜索</button><button id="reloadRecords" type="button">刷新记录</button></form><p class="muted">按需加载，不随状态刷新重置位置。长消息仅显示摘要。</p><div id="recordRows"></div><nav class="pagination"><span id="recordCount"></span><button id="recordPrevious">上一页</button><span id="recordPage"></span><button id="recordNext">下一页</button></nav></section>
+<section id="reportsPanel" hidden><div id="reportList"></div><div id="reportPreview" class="report-prose"></div><nav id="reportPager" class="pagination" hidden><button id="reportPrevious">上一页正文</button><span id="reportPage"></span><button id="reportNext">下一页正文</button></nav></section>
+</div></dialog>
+<script src="/assets/api.js?v=20260913"></script>
+<script src="/assets/ops.js?v=20260913"></script>
+</body></html>

@@ -1,0 +1,9 @@
+.basic-outline { margin: 1.2rem 0; min-width: 0; }
+.basic-outline > summary { cursor: pointer; font-weight: 600; padding: .6rem 0; }
+.basic-outline [hidden] { display: none; }
+.basic-outline-node { margin: .7rem 0; min-width: 0; }
+.basic-outline-node > .basic-outline-node { margin-left: .65rem; padding-left: .65rem; border-left: 2px solid #bbc9c255; }
+.basic-outline-node summary { cursor: pointer; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }
+.basic-outline-node h4 { margin: 0; line-height: 1.6; overflow-wrap: anywhere; }
+.basic-outline-node p { margin: .35rem 0 .8rem; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.8; font-size: .9rem; }
+.basic-outline a, #webpageReading p { overflow-wrap: anywhere; white-space: pre-wrap; }

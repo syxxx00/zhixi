@@ -1,0 +1,16 @@
+@echo off
+rem Keep each exported copy's data and temporary files independent.
+set "WP_PYTHON=%~dp0.venv\Scripts\python.exe"
+set "WP_MODEL_PYTHON=%WP_PYTHON%"
+set "WP_DATA_DIR=%~dp0data"
+set "WP_MODEL_PATH=%~dp0.runtime\configure-model-first.gguf"
+set "PYTHONDONTWRITEBYTECODE=1"
+set "TEMP=%~dp0.runtime\tmp"
+set "TMP=%TEMP%"
+set "PIP_CACHE_DIR=%~dp0.runtime\pip-cache"
+set "PIP_DISABLE_PIP_VERSION_CHECK=1"
+set "HF_HOME=%~dp0.runtime\huggingface"
+set "HUGGINGFACE_HUB_CACHE=%HF_HOME%\hub"
+set "TORCH_HOME=%~dp0.runtime\torch"
+if not exist "%TEMP%" mkdir "%TEMP%"
+if exist "%~dp0local-config.bat" call "%~dp0local-config.bat"

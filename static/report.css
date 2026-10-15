@@ -1,0 +1,106 @@
+.report-view-tabs { grid-column: 1 / -1; display: flex; align-items: center; gap: 4px; padding: 10px clamp(18px, 4vw, 64px); border-bottom: 1px solid var(--line); background: var(--card); }
+.report-view-tabs button, .report-toc button { border: 0; background: transparent; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-size: 13px; }
+.report-view-tabs button[aria-pressed="true"] { background: var(--mint); color: var(--green-dark); font-weight: 700; }
+.workspace:has(.report-view-tabs:not(.hidden)) { grid-template-rows: auto minmax(0, 1fr); }
+.workspace.reading-report { display: block; height: auto; min-height: calc(100vh - 68px); overflow: visible; }
+.reading-report > .insight-panel, .reading-report > .map-panel { display: none; }
+.report-reader { max-width: 1190px; margin: 0 auto; padding: 44px 32px 120px; display: grid; grid-template-columns: 205px minmax(0, 760px); gap: clamp(24px, 5vw, 70px); align-items: start; }
+.report-toc { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; font-size: 13px; }
+.report-toc button { text-align: left; color: var(--green); }
+.report-navigation-bar > #readerBack { padding-left: 0; }
+#readerNavigationToggle { display: none; }
+#readerNavigationPanel[hidden] { display: none; }
+#readerNavigationPanel > button { display: block; width: 100%; padding-left: 0; }
+.report-toc-label { display: block; margin: 32px 0 12px; font-size: 11px; letter-spacing: .08em; color: #657269; }
+.report-version-label { display: block; margin: 0 0 18px; font-size: 12px; color: #657269; }.report-version-label select { display: block; width: 100%; min-width: 0; padding: 8px; margin-top: 6px; color: #385643; border: 1px solid #d5ded1; border-radius: 7px; background: #fffef9; }
+.report-toc nav { display: grid; gap: 4px; margin: 0 0 26px; border-left: 1px solid var(--line); }
+.report-toc a { padding: 8px 12px; color: #53645a; text-decoration: none; line-height: 1.6; overflow-wrap: anywhere; }
+.report-toc a:hover, .report-toc a:focus-visible { color: var(--green-dark); background: var(--mint); }
+.report-document { min-width: 0; background: var(--card); padding: clamp(24px, 4vw, 54px); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 8px 32px #1a382008; }
+.report-heading h2 { margin: 17px 0; font-size: clamp(26px, 3vw, 36px); font-weight: 700; letter-spacing: -.025em; line-height: 1.4; overflow-wrap: anywhere; }
+.report-byline, .report-secondary { color: #606e65; font-size: 13px; line-height: 1.8; }
+.report-document p { line-height: 1.95; font-size: 16px; margin: 12px 0 20px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.report-document h3 { margin: 0 0 20px; font-size: 21px; line-height: 1.6; }
+.report-document h4, .report-document h5, .report-document h6 { font-size: 17px; line-height: 1.7; margin: 24px 0 8px; }
+.report-section { scroll-margin-top: 24px; padding-top: 32px; margin-top: 32px; border-top: 1px solid var(--line); }
+.report-section .report-section { padding-top: 0; margin-top: 24px; border-top: 0; }
+.report-overview { margin-top: 32px; }
+.report-notice { margin: 26px 0; padding: 14px 17px; background: #f4f1e7; border-left: 3px solid #ad8441; color: #665333; border-radius: 3px 8px 8px 3px; font-size: 13px; line-height: 1.8; }
+.report-reading-note { margin: 18px 0 24px; color: #606e65; font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+.report-reading-note a { color: inherit; text-underline-offset: 3px; }
+.report-document p.report-secondary { font-size: 13px; line-height: 1.8; }
+.report-support { display: inline-block; margin-left: 8px; padding: 2px 7px; font-size: 11px; line-height: 1.8; font-weight: 500; vertical-align: middle; border-radius: 5px; background: #eaf2eb; color: #356045; }
+.report-support.needs_review { background: #fbf0db; color: #775721; }
+.report-evidence { margin: 14px 0; border: 1px solid #dde3db; border-radius: 8px; background: #fafbf7; overflow-wrap: anywhere; }
+.report-evidence summary { padding: 12px 14px; color: var(--green-dark); cursor: pointer; font-size: 13px; line-height: 1.7; }
+.report-evidence.pending summary { color: #775721; }
+.report-evidence blockquote { margin: 0 14px 16px; padding: 0 0 0 14px; border-left: 2px solid #bfcdc0; }
+.report-evidence blockquote p { font-size: 14px; margin: 8px 0; line-height: 1.85; }
+.report-evidence footer { font-size: 12px; line-height: 1.7; }
+.report-evidence a { color: var(--green); text-underline-offset: 3px; }
+.report-document ::selection { background: #d5e8d9; }
+.report-grounding-record { max-height: 360px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; padding: 14px; font-size: 12px; line-height: 1.7; }
+.report-reader :focus-visible, .report-view-tabs :focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.report-ask-section { border: 1px solid #d5e1d8; border-radius: 7px; background: #f3f7f1; color: #346651; font: inherit; font-size: 13px; padding: 7px 11px; cursor: pointer; }
+.report-ask-section:hover { background: #e6efe6; }
+.report-ask-section:focus-visible { outline: 2px solid #19664e; outline-offset: 3px; }
+.selection-question { position: fixed; z-index: 150; background: #19664e; color: white; border-radius: 9px; padding: 10px 14px; box-shadow: 0 5px 18px #16382e30; }
+.question-dialog { width: min(840px, calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 40px); padding: 0; border: 1px solid #d8dfd6; border-radius: 18px; background: #fffef9; color: #243d31; box-shadow: 0 24px 100px #19372a38; }
+.question-dialog button { border: 0; border-radius: 8px; padding: 8px 12px; background: #edf3e9; color: #28543d; font: inherit; cursor: pointer; }
+.question-dialog button:hover { filter: brightness(.96); }.question-dialog button:disabled { opacity: .55; cursor: wait; }
+.question-dialog::backdrop { background: #14291d66; }
+.question-dialog > header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 30px; border-bottom: 1px solid #e3e7de; }
+.question-dialog h2 { margin: 8px 0 0; font-size: 23px; }.question-dialog header button { font-size: 26px; }
+.question-scroll { max-height: calc(100dvh - 162px); overflow: auto; overscroll-behavior: contain; padding: 20px 30px 32px; }
+.question-dialog p, .question-dialog blockquote { line-height: 1.9; white-space: pre-wrap; overflow-wrap: anywhere; }
+.question-report-title, .question-dialog .report-secondary { font-size: 13px; color: #68756b; }
+.question-selection { padding: 14px 18px; margin: 14px 0; border-left: 3px solid #9cbaa7; background: #f0f4eb; font-size: 14px; max-height: 160px; overflow: auto; }
+.question-dialog label { display: block; font-size: 13px; line-height: 1.8; }
+.question-dialog textarea, .question-dialog select, .question-dialog input { box-sizing: border-box; display: block; width: 100%; border: 1px solid #cdd8cd; background: white; border-radius: 8px; padding: 10px; font: inherit; color: inherit; }
+.question-supplement { margin: 16px 0; padding: 12px; background: #f3f5ee; border-radius: 9px; }
+.question-dialog textarea { resize: vertical; margin-top: 8px; }.question-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+.question-dialog .question-submit { background: #19664e; color: white; padding: 10px 18px; border-radius: 8px; }
+.question-record { border-top: 1px solid #dfe5db; padding: 16px 0; }.question-record summary { cursor: pointer; line-height: 1.8; overflow-wrap: anywhere; }.question-record summary span { display: block; font-size: 12px; color: #6c776f; }
+.question-record h4 { margin-bottom: 8px; }.question-record footer { font-size: 12px; }.question-record a { color: #19664e; }.question-version-warning { color: #805d27; font-size: 13px; }
+.question-dialog :focus-visible { outline: 2px solid #19664e; outline-offset: 3px; }
+@media(max-width:600px){.question-dialog > header{padding:18px}.question-scroll{padding:16px 18px 24px}.question-controls{grid-template-columns:1fr}.question-dialog{width:calc(100% - 16px);max-height:calc(100dvh - 16px)}}
+body.reader-view .task-dock.collapsed { width: 54px; border-radius: 50%; }
+body.reader-view .task-dock.collapsed .task-dock-toggle { height: 54px; justify-content: center; padding: 0; }
+body.reader-view .task-dock.collapsed .task-dock-toggle span { display: none; }
+body.reader-view .task-dock.collapsed .task-dock-toggle strong { background: transparent; margin: 0; }
+@media (max-width: 850px) {
+  .report-reader { display: block; padding: 20px 16px 100px; }
+  .report-toc { position: relative; top: auto; max-height: none; overflow: visible; margin-bottom: 12px; }
+  .report-navigation-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .report-navigation-bar button { min-height: 44px; }
+  #readerNavigationToggle { display: block; border: 1px solid var(--line); background: var(--card); }
+  #readerNavigationToggle[aria-expanded="true"] { background: var(--mint); }
+  #readerNavigationPanel { position: absolute; z-index: 160; top: calc(100% + 8px); left: 0; right: 0; max-height: calc(100dvh - 220px); overflow: auto; overscroll-behavior: contain; padding: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 40px #19372a26; }
+  .report-toc-label { margin: 0 0 12px; }
+  .report-toc nav { margin-bottom: 16px; }
+  .report-toc a, #readerNavigationPanel > button { min-height: 44px; box-sizing: border-box; }
+  #readerNavigationPanel > button { padding: 10px 12px; }
+  .report-document { padding: 24px 32px 24px 20px; }
+  .report-heading h2 { font-size: 25px; margin: 12px 0; }
+  .report-document .report-byline { font-size: 12px; line-height: 1.7; margin: 8px 0 16px; }
+  .report-notice { margin: 18px 0; padding: 12px; }
+  .report-overview { margin-top: 24px; }
+  /* A permanent narrow-screen gutter keeps the collapsed 44px queue target
+     outside prose. Opening the overlay does not change document geometry. */
+  body.reader-view:not(.research-view) .task-dock { right: 0; }
+  body.reader-view:not(.research-view) .task-dock.collapsed { width: 46px; }
+  body.reader-view:not(.research-view) .task-dock .task-dock-toggle { height: 44px; flex-basis: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .report-reader *, body.reader-view .task-dock, body.reader-view .task-dock-toggle { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+.report-detail-material { margin: 22px 0 10px; border-top: 1px solid #dfe5db; padding-top: 12px; }
+.report-detail-material > summary { cursor: pointer; color: #346651; font-size: 14px; padding: 8px 0; }
+.report-detail-material > summary:focus-visible { outline: 2px solid #19664e; outline-offset: 3px; }
+.report-detail-material > .report-section { border-left: 2px solid #e5e9df; padding-left: 18px; }
+/* Optional gap follow-up remains inside the reading column. */
+#report-question-coverage form { margin-top: 1rem; }
+#report-question-coverage label { display: block; margin: .7rem 0; }
+#report-question-coverage textarea { display: block; box-sizing: border-box; width: 100%; resize: vertical; padding: .7rem; font: inherit; line-height: 1.6; }
+#report-question-coverage input { margin-left: .6rem; width: 5rem; padding: .4rem; font: inherit; }
+.report-field-references > h4, .report-field-references > p { margin-left: 14px; margin-right: 14px; overflow-wrap: anywhere; }

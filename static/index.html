@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="使用本地模型或自定义 API 分析文本与网页，并生成可编辑的交互式思维导图。">
+  <title>枝析 · 本地内容分析</title>
+  <link rel="stylesheet" href="/assets/styles.css?v=20260924-queue-history-jobs">
+  <link rel="stylesheet" href="/assets/report.css">
+  <link rel="stylesheet" href="/assets/media_evidence.css?v=20260924-media-summary-v2">
+  <link rel="stylesheet" href="/assets/materials.css">
+  <link rel="stylesheet" href="/assets/basic_outline.css?v=20260909-link-reading">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="枝析首页"><span class="brand-mark">枝</span><span>枝析</span></a>
+    <div class="top-actions"><button id="historyBtn" class="history-button">历史记录</button><button id="settingsButton" class="history-button" type="button" aria-haspopup="dialog">设置</button></div>
+  </header>
+
+  <main>
+    <section id="composer" class="composer">
+      <div class="eyebrow">LOCAL KNOWLEDGE MAPPER</div>
+      <h1>读懂资料，理清问题</h1>
+      <p id="privacyLead" class="lead">粘贴文字或输入网页地址，为每批任务选择模型；提交后可继续添加下一批。</p>
+
+      <form id="analysisForm" class="input-card">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-mode="text" type="button" role="tab">粘贴文本</button>
+          <button class="tab" data-mode="url" type="button" role="tab">分析网页</button>
+          <button class="tab" data-mode="research" type="button" role="tab">深度研究</button>
+        </div>
+        <label class="sr-only" for="sourceText">需要分析的文本</label>
+        <textarea id="sourceText" placeholder="在这里粘贴文章、会议记录、课程笔记……" spellcheck="false"></textarea>
+        <label class="sr-only" for="sourceUrl">需要分析的网页地址，每行一个</label>
+        <textarea id="sourceUrl" class="url-list hidden" placeholder="每行输入一个公开网页地址，可批量提交&#10;https://example.com/article"></textarea>
+        <div id="researchInput" class="research-input hidden">
+          <label>研究目标<textarea id="researchGoal" placeholder="例如：梳理这个网站中 HTML 基础教程的核心章节"></textarea></label>
+          <details class="research-materials"><summary>附加材料（可选）</summary>
+            <label>已有文字<textarea id="researchMaterialText" placeholder="可粘贴背景、原文或需要比较的材料；与文件、网址共同用于这项研究。"></textarea></label>
+            <button id="researchFileButton" class="text-button" type="button">导入文本文件</button>
+            <input id="researchFileInput" class="hidden" type="file" accept=".txt,.md,.html,.htm,text/plain,text/markdown,text/html" multiple>
+            <div id="researchFileList" aria-live="polite"></div>
+            <small>保留文件原文，不把附件正文或其中的链接自动发给搜索引擎。所选模型会读取材料；选择 API 时材料会发送给该模型服务。</small>
+          </details>
+          <label class="research-network"><input id="researchNetwork" type="checkbox" checked>允许联网寻找资料（取消后仅使用附加材料）</label>
+          <small id="researchSearchService" data-network-field>搜索服务可在右上角“设置 → 网页搜索”中配置，与模型选择独立。</small>
+          <small id="researchLocalNote" class="hidden">仅使用附加材料回答问题，不搜索、不读取网址。已有联网条件仍保留，重新允许联网时可继续使用。</small>
+          <label data-network-field>公开搜索主题<textarea id="researchPublicTopic" placeholder="仅填写允许发给搜索引擎的主题，例如：明日方舟 莱茵生命 孤星 界面 图形 动态 玩家评价"></textarea></label>
+          <label data-network-field>起始网址（可选）<textarea id="researchSeeds" aria-describedby="researchSeedsHelp" placeholder="每行一个完整的 https:// 网址，可粘贴文章、目录或视频页链接"></textarea></label>
+          <small id="researchSeedsHelp" data-network-field>这些网址会优先安排读取，不因标题信息不足被模型直接跳过；提供网址不代表认可其中的观点。未提供网址时，按公开搜索主题寻找入口。读取仍受网站访问条件及搜集时限约束。</small>
+          <small data-network-field>公开主题会发送到搜索引擎，请勿填写私人代码或日志。搜索不附送完整研究目标和报告；只沿起始站点读取、不搜索时可以留空。</small>
+          <div class="research-options" data-network-field>
+            <label>搜集时限（分钟）<input id="researchTimeMinutes" type="number" min="1" max="1440" value="30"></label>
+            <label>范围<select id="researchScope"><option value="any_public">允许公开站外链接</option><option value="same_host">仅起始站点</option></select></label>
+          </div>
+          <small data-network-field>自动搜集 → 整理报告。默认搜集 30 分钟，排队和暂停不计；到时不再扩展新网页，当前请求结束后整理报告，报告生成另需时间。保留去重、访问安全及单轮 500 页 / 20 层的防循环保护，触发保护也会交付已有材料的报告。</small>
+        </div>
+        <div id="errorBox" class="error hidden" role="alert"></div>
+        <div class="input-footer">
+          <div class="input-tools">
+            <button id="sampleBtn" class="text-button" type="button">填入示例</button>
+            <button id="fileBtn" class="text-button" type="button">批量导入文本文件</button>
+            <input id="fileInput" class="hidden" type="file" accept=".txt,.md,.html,.htm,text/plain,text/markdown,text/html" multiple>
+            <span id="charCount">0 字</span>
+          </div>
+          <details id="analysisSettings" class="settings">
+            <summary>结构设置</summary>
+            <div class="structure-popover">
+              <label>结构倾向
+                <select id="structureMode">
+                  <option value="auto">自动判断</option>
+                  <option value="concise">精炼</option>
+                  <option value="detailed">详细</option>
+                  <option value="exhaustive">尽可能完整</option>
+                </select>
+              </label>
+              <small>只指导分析密度，不限制层级或子节点数量。</small>
+            </div>
+          </details>
+          <label id="taskModelWrap" class="task-model">本批模型<select id="taskModelSelect" aria-label="本批任务使用的模型"></select></label>
+          <button id="analyzeBtn" class="primary" type="submit"><span id="analyzeLabel">生成思维导图</span><span aria-hidden="true">→</span></button>
+        </div>
+      </form>
+      <div id="submissionNotice" class="submission-notice hidden" role="status"></div>
+    </section>
+
+    <section id="loading" class="loading hidden" aria-live="polite">
+      <div class="loader"><i></i><i></i><i></i></div>
+      <h2 id="loadingTitle">模型正在梳理内容</h2>
+      <p id="loadingHint">提取主题与关键信息…</p>
+      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100"><div id="progressBar"></div></div>
+      <strong id="progressValue" class="progress-value">0%</strong>
+      <small>首次加载模型通常需要一些时间，请保持页面打开</small>
+      <div id="batchJobs" class="batch-jobs hidden"></div>
+    </section>
+
+    <section id="workspace" class="workspace hidden">
+      <nav id="reportViewTabs" class="report-view-tabs hidden" aria-label="研究结果视图">
+        <button type="button" data-result-view="report" aria-pressed="true">阅读报告</button>
+        <button type="button" data-result-view="map" aria-pressed="false">思维导图与编辑</button>
+      </nav>
+      <section id="reportReader" class="report-reader hidden" aria-label="研究报告阅读区"></section>
+      <aside class="insight-panel">
+        <button id="backBtn" class="back-button">← 新建分析</button>
+        <div id="batchNotice" class="batch-notice hidden"></div>
+        <div id="qualityBadge" class="quality-badge hidden"></div>
+        <div class="eyebrow">ANALYSIS</div>
+        <h2 id="resultTitle"></h2>
+        <input id="titleEditor" class="result-editor hidden" aria-label="分析标题">
+        <p id="summary" class="summary"></p>
+        <textarea id="summaryEditor" class="result-editor hidden" aria-label="分析摘要"></textarea>
+        <div id="keywords" class="keywords"></div>
+        <input id="keywordsEditor" class="result-editor hidden" aria-label="关键词" placeholder="关键词，用逗号分隔">
+        <details id="basicOutlineSection" class="basic-outline" hidden><summary>阅读完整大纲</summary><div id="basicOutline" aria-label="文本与网页分析大纲"></div></details>
+        <details id="webpageReadingSection" class="basic-outline" hidden><summary>网页与补充来源</summary><div id="webpageReading" aria-label="网页补充阅读记录"></div></details>
+        <section id="factsSection" class="result-section hidden"><h3>摘录与概括</h3><p class="report-secondary">这些要点可能包含事实陈述、作者观点或评论，不代表已核实的事实；请结合原文和上下文判断。</p><div id="factCards" class="fact-cards"></div></section>
+        <section id="insightsSection" class="result-section hidden"><h3>分析洞察</h3><div id="insightCards" class="insight-cards"></div></section>
+        <section id="timelineSection" class="result-section hidden"><h3>时间线</h3><div id="timeline" class="timeline"></div></section>
+        <section id="evidenceSection" class="result-section hidden"><h3>数字事实核验</h3><div id="evidenceCards" class="evidence-cards"></div></section>
+        <section id="researchResultSection" class="result-section hidden"><h3>研究依据</h3><div id="researchResultMeta" class="research-result-meta"></div><div id="semanticAudit" class="semantic-audit hidden"></div><div id="researchConflicts" class="research-conflicts"></div><h4 id="evidenceGraphTitle">跨来源证据关系</h4><div id="evidenceGraph" class="evidence-graph"></div><div id="researchSources" class="research-sources"></div></section>
+        <div class="edit-actions">
+          <button id="editResult">编辑结果</button>
+          <button id="saveResult" class="hidden">保存修改</button>
+          <button id="cancelEdit" class="hidden">取消</button>
+        </div>
+        <p id="editStatus" class="edit-status hidden" role="status" aria-live="polite"></p>
+        <button type="button" id="viewMaterials" class="history-button">原始材料与处理记录</button>
+        <button type="button" id="trashAnalysisResult" class="history-button result-trash hidden">移入回收站</button>
+        <dl class="meta">
+          <div><dt>来源</dt><dd id="sourceMeta"></dd></div>
+          <div><dt>模型</dt><dd id="modelMeta">Qwen3-1.7B · 本地</dd></div>
+          <div><dt>耗时</dt><dd id="timeMeta"></dd></div>
+        </dl>
+        <div class="export-title">导出结果</div>
+        <div class="export-grid">
+          <button data-export="markdown">Markdown</button>
+          <button data-export="json">JSON</button>
+          <button data-export="svg">SVG 图像</button>
+        </div>
+      </aside>
+      <div class="map-panel">
+        <div id="mapRenderState" class="map-render-state hidden">正在绘制思维导图…</div>
+        <div class="map-toolbar">
+          <span>点击节点查看详情 · 点击 ± 折叠分支 · 拖动画布 · 滚轮缩放</span>
+          <div><button id="zoomOut" title="缩小">−</button><button id="fitMap" title="适应画布">适应</button><button id="zoomIn" title="放大">＋</button></div>
+        </div>
+        <svg id="mindMap" xmlns="http://www.w3.org/2000/svg" aria-label="思维导图">
+          <g id="viewport"><g id="links"></g><g id="nodes"></g></g>
+        </svg>
+        <div id="nodeDetail" class="node-detail hidden"><button class="detail-close" aria-label="关闭">×</button><strong></strong><p></p><div class="node-citations"></div><div class="node-editor hidden"><input aria-label="节点标题"><textarea aria-label="节点说明"></textarea><button class="node-save">应用节点修改</button></div></div>
+      </div>
+    </section>
+  </main>
+  <aside id="taskDock" class="task-dock collapsed" aria-label="任务队列">
+    <button id="taskDockToggle" class="task-dock-toggle" type="button" aria-expanded="false"><span>任务队列</span><strong id="taskCount">0</strong><span id="taskDockChevron">⌃</span></button>
+    <div class="task-dock-body">
+      <header>
+        <div><strong>后台运行</strong><small>提交后可继续创建任务</small></div>
+        <div class="clear-control">
+          <button id="clearFinished" class="hidden" type="button">清除已结束</button>
+          <div id="clearConfirm" class="clear-confirm hidden" role="alertdialog" aria-label="确认清理任务记录">
+            <span>仅从队列清除已结束的记录？历史与报告保留，运行和暂停的任务不受影响。</span>
+            <div><button id="cancelClear" type="button">取消</button><button id="confirmClear" class="confirm" type="button">清理</button></div>
+          </div>
+        </div>
+      </header>
+      <div id="taskList" class="task-list"><p class="task-empty">还没有本次会话的任务</p></div>
+    </div>
+  </aside>
+  <div id="modelOverlay" class="modal-overlay hidden">
+    <section class="model-dialog settings-dialog" role="dialog" aria-modal="true" aria-labelledby="modelDialogTitle">
+      <header><div><div class="eyebrow">SETTINGS</div><h2 id="modelDialogTitle">模型与搜索设置</h2></div><button id="closeModel" type="button" aria-label="关闭">×</button></header>
+      <nav class="settings-tabs" aria-label="设置类别"><button id="modelSettingsTab" type="button" aria-pressed="true">分析模型</button><button id="searchSettingsTab" type="button" aria-pressed="false">网页搜索</button></nav>
+      <div id="modelSettingsPanel">
+      <p class="dialog-note">保存多个本地模型或 OpenAI 兼容 API。分析时再为每批输入选择。</p>
+      <div class="model-registry-layout">
+        <div><div id="modelRegistryList" class="model-registry-list"></div><button id="newModel" class="registry-add" type="button">＋ 添加模型</button></div>
+        <div class="model-editor">
+      <label>配置名称<input id="modelConfigName" maxlength="80" placeholder="例如：本地 Qwen 1.7B"></label>
+      <label>模型来源<select id="modelProvider"><option value="local">本地模型</option><option value="api">OpenAI 兼容 API</option></select></label>
+      <div id="localFields" class="model-fields">
+        <label>模型文件或文件夹路径<input id="localModelPath" autocomplete="off" placeholder="D:\Models\model-name 或 D:\Models\model.gguf"></label>
+        <small>支持含 config.json 的 Hugging Face 文件夹，以及单个 GGUF 文件或只含一个 GGUF 的文件夹。</small>
+      </div>
+      <div id="apiFields" class="model-fields hidden">
+        <label>Base URL<input id="apiBaseUrl" placeholder="https://api.example.com/v1"></label>
+        <label>模型名<input id="apiModel" placeholder="模型名"></label>
+        <label>API Key<input id="apiKey" type="password" autocomplete="off" placeholder="仅保存在当前会话"></label>
+      </div>
+      <p id="modelError" class="field-error hidden"></p>
+      <div class="model-editor-actions"><button id="deleteModel" type="button">删除</button><button id="saveModel" class="dialog-primary" type="button">验证并保存</button></div>
+        </div>
+      </div>
+      </div>
+      <section id="searchSettingsPanel" class="search-settings-panel hidden" aria-label="网页搜索设置">
+        <p class="dialog-note">搜索服务只接收获准公开的检索词；本地模型继续负责阅读与分析。搜索摘要不是网页原文。</p>
+        <label>默认搜索服务<select id="searchProvider"><option value="hybrid">普通网页搜索（百度 / 360 / Yahoo，免密钥）</option><option value="baidu">百度搜索 API（标准版）</option><option value="brave">Brave Search API</option></select></label>
+        <label id="searchKeyField">搜索 API Key<input id="searchApiKey" type="password" autocomplete="off" placeholder="留空保留已配置的密钥"></label>
+        <p id="searchKeyStatus" class="dialog-note" aria-live="polite"></p>
+        <p class="dialog-note">手填密钥只留在后台内存，不存浏览器、研究历史或磁盘；关闭服务后需重填。也可由启动环境变量提供。保存后影响默认搜索任务的后续检索（含继续任务），不会自动启动研究，也不会自动切换到其他付费服务。</p>
+        <div class="model-editor-actions"><button id="clearSearchKey" type="button">清除内存密钥</button><button id="saveSearchSettings" class="dialog-primary" type="button">保存搜索设置</button></div>
+        <p id="searchSettingsStatus" class="dialog-note" role="status"></p>
+        <details class="search-test"><summary>单次检索测试</summary>
+          <p class="dialog-note">先保存设置。点击后向所选 API 发送一次真实检索，可能计费；不调用模型、不创建研究、不读取网页正文。</p>
+          <label>公开检索词<input id="searchTestQuery" value="Python 官方文档" maxlength="1000"></label>
+          <button id="testSearchSettings" type="button">发送一次检索</button>
+          <div id="searchTestResults" aria-live="polite"></div>
+        </details>
+        <p class="dialog-note">接口说明：<a href="https://cloud.baidu.com/doc/qianfan-api/s/Wmbq4z7e5" target="_blank" rel="noopener noreferrer">百度</a> · <a href="https://api-dashboard.search.brave.com/api-reference/web/search/get" target="_blank" rel="noopener noreferrer">Brave</a>。百度会截断超长查询，本项目会提前报明原因而非静默截断。</p>
+      </section>
+    </section>
+  </div>
+  <div id="historyOverlay" class="history-overlay hidden">
+    <section class="history-drawer" aria-label="历史记录">
+      <header><div><div class="eyebrow">LIBRARY</div><h2>历史记录</h2></div><button id="closeHistory" aria-label="关闭">×</button></header>
+      <nav class="history-tabs" aria-label="历史记录类型">
+        <button class="active" type="button" data-history-kind="analysis">文本 / 网页</button>
+        <button type="button" data-history-kind="research">探索研究</button>
+      </nav>
+      <p id="historyNote" class="history-note">分析结果保存在本机，不会上传到云端。</p>
+      <details id="historyJobSection" class="history-job-section hidden"><summary id="historyJobSummary">尚未形成结果的任务</summary><p class="history-note">包括等待、运行、暂停和失败的任务。清出队列不会停止任务。</p><div id="historyJobList" class="history-list"></div><button id="historyJobLoadMore" class="history-load-more hidden" type="button">加载更多任务</button></details>
+      <h3 id="historyResultHeading" class="history-result-heading">已完成的分析</h3>
+      <div id="historyList" class="history-list"></div>
+      <button id="historyLoadMore" class="history-load-more hidden" type="button">加载更多记录</button>
+      <button id="openTrash" class="history-trash-access" type="button">回收站</button>
+      <section id="historyTrashPanel" class="history-trash-panel hidden" aria-label="回收站">
+        <div class="history-trash-heading"><h3>回收站</h3><button id="closeTrash" type="button">返回历史</button></div>
+        <p>移入的记录不会自动运行。恢复后可查看保存的材料；永久删除无法撤销。</p>
+        <p id="historyTrashError" class="history-trash-error hidden" role="alert"></p>
+        <div id="historyTrashList" class="history-list"></div>
+      </section>
+    </section>
+  </div>
+  <dialog id="jobDetailDialog" class="record-confirm-dialog job-detail-dialog" aria-labelledby="jobDetailTitle"><div><h2 id="jobDetailTitle">任务详情</h2><p id="jobDetailStatus"></p><p id="jobDetailStage"></p><p id="jobDetailError" class="task-error hidden"></p><div class="job-detail-actions"><button id="jobDetailResearch" type="button" class="hidden">查看所属研究</button><button id="jobDetailTrash" type="button" class="danger-confirm">移入回收站</button><button id="jobDetailClose" type="button">关闭</button></div></div></dialog>
+  <div id="researchOverlay" class="research-workspace-overlay hidden">
+    <section class="research-drawer" aria-label="研究项目工作区">
+      <header class="research-workspace-header">
+        <div><div class="eyebrow">RESEARCH WORKSPACE</div><h2 id="researchDetailTitle">研究项目</h2><p id="researchDetailStatus" class="history-note"></p></div>
+        <div class="research-header-actions"><button id="trashResearchProject" type="button" disabled>移入回收站</button><button id="closeResearch" aria-label="关闭研究工作区">×</button></div>
+      </header>
+      <div class="research-summary-bar">
+        <div id="researchStats" class="research-stats"></div>
+        <div id="researchControls" class="research-controls"></div>
+      </div>
+      <nav class="research-view-tabs" aria-label="研究工作区视图">
+        <button class="active" type="button" data-research-view="sources">材料与线索</button>
+        <button type="button" data-research-view="activity">运行记录</button>
+        <button type="button" data-research-view="map">抓取路径</button>
+      </nav>
+      <div class="research-workspace-body">
+        <section class="research-view-panel" data-research-panel="map"><h3>抓取路径</h3><p class="history-note">记录网页如何被发现，不代表知识关系或研究完成度。</p><div id="researchGraph" class="research-graph"></div></section>
+        <section class="research-view-panel active" data-research-panel="sources">
+          <p class="history-note">系统自动选择和读取线索。已获取不等于已核实；报告中的结论需有实际材料支持。</p>
+          <div><h3>已处理页面</h3><div id="researchFetched" class="research-page-list"></div></div>
+          <div><h3>保留的候选网页</h3><div id="researchCandidates" class="research-page-list"></div></div>
+          <details id="researchDuplicateSection" class="hidden"><summary>重复来源与校正</summary><div id="researchDuplicateClusters" class="research-duplicate-clusters"></div></details>
+        </section>
+        <section class="research-view-panel" data-research-panel="activity"><h3>后台活动</h3><div id="researchEvents" class="research-event-list"></div></section>
+      </div>
+    </section>
+  </div>
+  <script src="/assets/api.js?v=20260913"></script>
+  <script src="/assets/file_input.js"></script>
+  <script src="/assets/model_defaults.js"></script>
+  <script src="/assets/basic_outline.js?v=20260909-link-reading"></script>
+  <script src="/assets/app.js?v=20261008-saved-views"></script>
+  <script src="/assets/search_settings.js?v=20260921"></script>
+  <script src="/assets/materials.js?v=20261008-saved-views"></script>
+  <script src="/assets/media_evidence.js?v=20260924-media-summary-v2"></script>
+  <script src="/assets/report.js?v=20261008-check-handoff"></script>
+  <script src="/assets/questions.js?v=20261008-combined-question-input"></script>
+</body>
+</html>
