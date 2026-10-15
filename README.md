@@ -156,8 +156,10 @@ set "WP_MODEL_PYTHON=E:\model-env\Scripts\python.exe"
 | `zhixi/models/` | 模型连接、推理入口、容量与资源检查 |
 | `zhixi/media/`、`zhixi/ops/` | 媒体记录及运行观察 |
 
-源码快照为 `a18870dbbc7d1ac3cd141038f49669fd9fbfd8ab`，导出日期为 `2026-10-15`；启动入口使用本目录独立的环境和数据位置。发布目录不附带开发实验与私人运行数据。
+源码快照为 `57a667586c70b6165843f46d49ccf43ef539f5b7`，导出日期为 `2026-10-15`；启动入口使用本目录独立的环境和数据位置。发布目录不附带开发实验与私人运行数据。
 
-本项目许可证尚未确定，暂未提供开源授权。第三方依赖及模型的授权独立于本项目，见 [第三方说明](THIRD_PARTY.md)。
+Copyright 2026 syxxx00.
+
+除另有注明的第三方内容外，本项目代码与随附文档采用 [Apache License 2.0](LICENSE)（`Apache-2.0`）授权。第三方依赖、模型及用户材料仍遵循各自的授权与使用条件，见 [第三方说明](THIRD_PARTY.md)。
 
 syxxx00 · [bruce666vip@hotmail.com](mailto:bruce666vip@hotmail.com)

@@ -1,7 +1,7 @@
 {
   "project": "枝析",
   "date": "2026-10-15",
-  "source_commit": "a18870dbbc7d1ac3cd141038f49669fd9fbfd8ab",
+  "source_commit": "57a667586c70b6165843f46d49ccf43ef539f5b7",
   "format": "directory",
   "kind": "Windows Python source runtime; no bundled interpreter or inference runtime",
   "desktop_entrypoints": "packaging/templates; runtime Python and static assets copied unchanged",
@@ -19,13 +19,17 @@
       "bytes": 393,
       "sha256": "f2e840dbf6458005673d2a7f04321af095cf57541374bd5170b8a0a8c45b9d9a"
     },
+    "LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
     "README.md": {
-      "bytes": 10181,
-      "sha256": "71c940591a24503cbf29e55c335632694239b1f98f12ba35c24313951a2da794"
+      "bytes": 10305,
+      "sha256": "9031f8f9617012d9ac379de596908111166fbe74b77bae049db8e03b0940ece6"
     },
     "THIRD_PARTY.md": {
-      "bytes": 2350,
-      "sha256": "c6991061b2acb6fdab6bda4381c5a984ab1d9d929212c417584d8d442430151e"
+      "bytes": 2383,
+      "sha256": "92c7de17a8cfb7d2df8bddb6d0882d3dd9ad725dc8a973a5bddbd2bb1536bd81"
     },
     "launch.py": {
       "bytes": 5519,
